@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>forge3D | Impressão 3D</title>
-  <meta name="description" content="Impressão 3D sob encomenda: peças decorativas, setup e personalizados. Peça seu orçamento.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>forge3D | Impressão 3D sob encomenda</title>
+  <meta name="description" content="Impressão 3D sob encomenda: peças decorativas, presentes, organização e conserto. Peça seu orçamento em minutos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -14,32 +14,113 @@
   <div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
   <header>
-    <div class="logo">forge<b>3D</b></div>
-    <a id="cta" class="cart-btn" href="#orcamento">Orçamento 🚀</a>
+    <a class="logo" href="#topo">forge<b>3D</b></a>
+    <a class="nav-cta" href="#orcamento">Orçamento</a>
   </header>
 
-  <section class="hero">
-    <h1>Transforme sua <span class="grad">ideia</span> em peça real</h1>
-    <p>Impressão 3D sob encomenda. Escolha, personalize e receba no seu WhatsApp em minutos.</p>
-    <a class="btn" href="#catalogo">Ver peças ⚡</a>
-  </section>
-
-  <main>
-    <section id="catalogo">
-      <div id="filters" class="filters"></div>
-      <section id="grid" class="grid" aria-live="polite"></section>
+  <main id="topo">
+    <!-- 1. Abertura -->
+    <section class="hero" aria-label="Apresentação">
+      <img class="hero-img" src="assets/img/impressora.jpg" alt="Impressora 3D com rolos de filamento colorido ao lado">
+      <div class="hero-copy">
+        <span class="kicker">Impressão 3D sob encomenda</span>
+        <h1>Sua ideia, <span class="grad">impressa</span> em camadas</h1>
+        <p>Da escolha da peça até a entrega na sua casa. Você recebe o valor antes de começar.</p>
+        <a class="btn" href="#catalogo">Ver peças</a>
+      </div>
     </section>
 
-    <section id="orcamento" class="calc" aria-labelledby="calc-titulo">
-      <h2 id="calc-titulo">Quanto custa a sua peça? 🎯</h2>
-      <p class="hint">Estimativa rápida. O valor final é confirmado após análise do modelo.</p>
-      <label for="peso">Peso estimado (gramas)</label>
-      <input id="peso" type="number" min="0" step="1" value="50">
-      <label for="horas">Tempo de impressão (horas)</label>
-      <input id="horas" type="number" min="0" step="0.5" value="3">
-      <label for="qtd">Quantidade</label>
-      <input id="qtd" type="number" min="1" step="1" value="1">
-      <div id="result" class="result" aria-live="polite">R$ 0,00</div>
+    <!-- 2. Cena de scroll: a peça se separa em etapas -->
+    <section class="scene" id="scene" aria-label="Como a peça é feita">
+      <div class="scene-stick">
+        <div class="wrap scene-grid">
+          <div class="explode" aria-hidden="true">
+            <div id="slices" style="position:absolute;inset:0"></div>
+          </div>
+          <div>
+            <div id="step-text" class="scene-text" aria-live="polite"></div>
+            <div id="scene-bar" class="scene-bar"><i></i></div>
+            <div id="dots" class="scene-dots" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="scene-hint">role para ver as etapas</p>
+      </div>
+    </section>
+
+    <!-- 3. Catálogo -->
+    <section class="sec" id="catalogo">
+      <div class="wrap">
+        <span class="kicker">Catálogo</span>
+        <h2 class="h2">Peças prontas para pedir</h2>
+        <p class="lead">Escolha uma peça e peça o orçamento. Pode ser ajustada em tamanho e cor.</p>
+        <div id="chips" class="chips"></div>
+        <div id="grid" class="grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- 4. Ideias do dia a dia -->
+    <section class="sec" id="ideias">
+      <div class="wrap">
+        <span class="kicker">Ideias</span>
+        <h2 class="h2">Onde a impressão 3D entra na sua rotina</h2>
+        <p class="lead">Algumas formas de usar em casa, no trabalho ou para presentear.</p>
+        <div id="ideas" class="ideas" style="margin-top:24px"></div>
+      </div>
+    </section>
+
+    <!-- 5. Orçamento guiado -->
+    <section class="sec" id="orcamento">
+      <div class="wrap">
+        <span class="kicker">Orçamento</span>
+        <h2 class="h2">Quanto custa a sua peça?</h2>
+        <p class="lead">Escolha as opções abaixo. O site mostra a estimativa de gramas, tempo e preço na hora.</p>
+
+        <div class="calc" style="margin-top:24px">
+          <div class="calc-grid">
+            <div>
+              <div class="step-title"><span>1</span>Tamanho aproximado</div>
+              <div id="sizes" class="sizes"></div>
+
+              <div class="step-title" style="margin-top:22px"><span>2</span>Para que ela serve?</div>
+              <div id="res-row" class="opt-row"></div>
+
+              <div class="step-title" style="margin-top:22px"><span>3</span>Acabamento</div>
+              <div id="acab-row" class="opt-row"></div>
+
+              <div class="step-title" style="margin-top:22px"><span>4</span>Quantidade</div>
+              <div class="qty">
+                <button id="qty-minus" type="button" aria-label="Diminuir">−</button>
+                <output id="qty">1</output>
+                <button id="qty-plus" type="button" aria-label="Aumentar">+</button>
+              </div>
+            </div>
+
+            <aside class="quote" aria-live="polite">
+              <div class="label">Estimativa</div>
+              <div id="total" class="total">R$ 0,00</div>
+              <div id="range" class="range"></div>
+              <ul>
+                <li><span>Tamanho</span><b id="det-tam"></b></li>
+                <li><span>Material gasto</span><b id="det-peso"></b></li>
+                <li><span>Tempo de impressão</span><b id="det-tempo"></b></li>
+                <li><span>Resistência</span><b id="det-res"></b></li>
+                <li><span>Acabamento</span><b id="det-acab"></b></li>
+                <li><span>Quantidade</span><b id="det-qtd"></b></li>
+              </ul>
+              <p class="note">Estimativa automática. O valor final é confirmado após a análise do seu modelo ou da sua ideia.</p>
+              <a id="pedir-orc" class="pedir" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Créditos das fotos -->
+    <section class="sec" style="padding-top:0">
+      <div class="wrap credits">
+        <strong>Fotos</strong>
+        <ul id="creditos"></ul>
+      </div>
     </section>
   </main>
 
@@ -49,6 +130,22 @@
 
   <script src="data/config.js"></script>
   <script src="data/produtos.js"></script>
+  <script src="data/ideias.js"></script>
+  <script src="data/creditos.js"></script>
   <script src="assets/js/app.js"></script>
+  <script>
+    (function () {
+      var ul = document.getElementById("creditos");
+      (window.FORGE_CREDITOS || []).forEach(function (c) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = c.fonte; a.target = "_blank"; a.rel = "noopener";
+        a.textContent = c.titulo.replace(/\.(jpe?g|png)$/i, "");
+        li.appendChild(a);
+        li.appendChild(document.createTextNode(" · " + c.autor + " · " + c.licenca));
+        ul.appendChild(li);
+      });
+    })();
+  </script>
 </body>
 </html>
