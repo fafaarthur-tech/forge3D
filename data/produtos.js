@@ -1,16 +1,147 @@
-// Catálogo. Troque nomes, preços e fotos pelos seus produtos reais.
-// "cor" é a cor de destaque do card; "img" aponta para assets/img.
+// Catálogo de Peças forge3D com metadados para e-commerce estilo Nike/Apple
 window.FORGE_PRODUTOS = [
-  { nome: "Vaso Espiral",           categoria: "Decoração",      cor: "#00e0a4", img: "assets/img/vaso.jpg",       precoBase: 39.9 },
-  { nome: "Fruteira Onda",          categoria: "Cozinha",        cor: "#3fd4ff", img: "assets/img/tigela.jpg",     precoBase: 59.9 },
-  { nome: "Chaveiros com Nome",     categoria: "Presentes",      cor: "#ffd23f", img: "assets/img/chaveiro.jpg",   precoBase: 9.9 },
-  { nome: "Gato da Sorte",          categoria: "Presentes",      cor: "#ff3fa4", img: "assets/img/gato.jpg",       precoBase: 34.9 },
-  { nome: "Urso Voronoi",           categoria: "Decoração",      cor: "#ff6a3d", img: "assets/img/urso.jpg",       precoBase: 49.9 },
-  { nome: "Cachepô Facetado",       categoria: "Plantas",        cor: "#00e0a4", img: "assets/img/vasos-flor.jpg", precoBase: 29.9 },
-  { nome: "Caixa Empilhável",       categoria: "Organização",    cor: "#3fd4ff", img: "assets/img/caixa.jpg",      precoBase: 32.9 },
-  { nome: "Cortador de Biscoito",   categoria: "Cozinha",        cor: "#ff6a3d", img: "assets/img/cortador.jpg",   precoBase: 14.9 },
-  { nome: "Labirinto de Bolso",     categoria: "Jogos",          cor: "#7b5cff", img: "assets/img/labirinto.jpg",  precoBase: 19.9 },
-  { nome: "Cabeça de Leão",         categoria: "Decoração",      cor: "#ffd23f", img: "assets/img/leao.jpg",       precoBase: 44.9 },
-  { nome: "Estrela Geométrica",     categoria: "Decoração",      cor: "#ff3fa4", img: "assets/img/estrela.jpg",    precoBase: 24.9 },
-  { nome: "Bomboniere Torcida",     categoria: "Cozinha",        cor: "#7b5cff", img: "assets/img/bomboniere.jpg", precoBase: 39.9 }
+  {
+    id: "vaso-espiral",
+    nome: "Vaso Espiral Paramétrico",
+    categoria: "Decoração",
+    badge: "BESTSELLER",
+    cor: "#00e0a4",
+    img: "assets/img/vaso.jpg",
+    precoBase: 39.90,
+    tempoEstimado: "4h 30m",
+    materialRecomendado: "PLA Silk Metálico",
+    desc: "Geometria orgânica inspirada na sequência de Fibonacci. Linhas curvas contínuas que criam um jogo de reflexos conforme a luz do ambiente muda."
+  },
+  {
+    id: "fruteira-onda",
+    nome: "Fruteira Escultural Onda",
+    categoria: "Cozinha",
+    badge: "DESTAQUE",
+    cor: "#3fd4ff",
+    img: "assets/img/tigela.jpg",
+    precoBase: 59.90,
+    tempoEstimado: "7h 15m",
+    materialRecomendado: "PETG Pro",
+    desc: "Design arrojado com pétalas onduladas. Leve, lavável e resistente, ideal para centro de mesa ou composição com frutas."
+  },
+  {
+    id: "chaveiro-custom",
+    nome: "Chaveiro Tipográfico Custom",
+    categoria: "Personalizados",
+    badge: "POPULAR",
+    cor: "#ffd23f",
+    img: "assets/img/chaveiro.jpg",
+    precoBase: 12.90,
+    tempoEstimado: "45min",
+    materialRecomendado: "PLA Clássico",
+    desc: "Grave seu nome, logotipo ou placa automotiva em relevo de alta definição com cores contrastantes no mesmo corpo sólido."
+  },
+  {
+    id: "gato-sorte",
+    nome: "Maneki-Neko Minimalista",
+    categoria: "Personalizados",
+    badge: "NOVO",
+    cor: "#ff3fa4",
+    img: "assets/img/gato.jpg",
+    precoBase: 34.90,
+    tempoEstimado: "3h 40m",
+    materialRecomendado: "PLA Clássico",
+    desc: "Reinterpretação contemporânea do clássico talismã oriental da boa fortuna com orelhas em gradiente fosco acetinado."
+  },
+  {
+    id: "urso-voronoi",
+    nome: "Urso Estrutural Voronoi",
+    categoria: "Decoração",
+    badge: "EXCLUSIVO",
+    cor: "#ff5e3a",
+    img: "assets/img/urso.jpg",
+    precoBase: 49.90,
+    tempoEstimado: "6h 10m",
+    materialRecomendado: "PLA Silk",
+    desc: "Malha celular complexa que desafia métodos tradicionais de injeção. Uma obra de arte geométrica vazada e ultraleve."
+  },
+  {
+    id: "cachepo-facetado",
+    nome: "Cachepô Facetado Low-Poly",
+    categoria: "Plantas",
+    badge: "POPULAR",
+    cor: "#00e0a4",
+    img: "assets/img/vasos-flor.jpg",
+    precoBase: 29.90,
+    tempoEstimado: "3h 20m",
+    materialRecomendado: "PETG Pro",
+    desc: "Faces poligonais nítidas que abraçam vasos de suculentas e folhagens. Resistente à rega e à umidade constante."
+  },
+  {
+    id: "caixa-modular",
+    nome: "Caixa Modular Empilhável",
+    categoria: "Organização",
+    badge: "UTILITÁRIO",
+    cor: "#3fd4ff",
+    img: "assets/img/caixa.jpg",
+    precoBase: 32.90,
+    tempoEstimado: "5h 00m",
+    materialRecomendado: "PETG Pro",
+    desc: "Trilhos de encaixe macho-fêmea perfeitamente calibrados para organizar componentes, gavetas de ferramentas ou coleções."
+  },
+  {
+    id: "cortador-biscoito",
+    nome: "Cortador Ergonômico de Confeitaria",
+    categoria: "Cozinha",
+    badge: "CRIATIVO",
+    cor: "#ff5e3a",
+    img: "assets/img/cortador.jpg",
+    precoBase: 14.90,
+    tempoEstimado: "50min",
+    materialRecomendado: "PETG Food Safe",
+    desc: "Borda de corte afilada com reforço superior arredondado para prensar massas de biscoito ou pasta americana sem cansar a mão."
+  },
+  {
+    id: "labirinto-tátil",
+    nome: "Labirinto Fidget Antiestresse",
+    categoria: "Jogos",
+    badge: "NOVO",
+    cor: "#7b5cff",
+    img: "assets/img/labirinto.jpg",
+    precoBase: 19.90,
+    tempoEstimado: "1h 30m",
+    materialRecomendado: "PLA Clássico",
+    desc: "Puzzle sensorial mecânico com labirinto de precisão. Formato compacto de bolso que ajuda no foco e alívio de ansiedade."
+  },
+  {
+    id: "relevo-leao",
+    nome: "Medalhão Escultural Leão",
+    categoria: "Decoração",
+    badge: "PREMIUM",
+    cor: "#ffd23f",
+    img: "assets/img/leao.jpg",
+    precoBase: 44.90,
+    tempoEstimado: "5h 45m",
+    materialRecomendado: "PLA Silk Ouro",
+    desc: "Escultura de parede com densidade volumétrica expressiva e linhas anatômicas de grande impacto visual."
+  },
+  {
+    id: "stella-octangula",
+    nome: "Estrela Octangular Kepleriana",
+    categoria: "Decoração",
+    badge: "GEOMETRIA",
+    cor: "#ff3fa4",
+    img: "assets/img/estrela.jpg",
+    precoBase: 24.90,
+    tempoEstimado: "2h 40m",
+    materialRecomendado: "PLA Silk",
+    desc: "Poliedro estrelado com encaixes milimétricos. Um monumento à matemática espacial impresso no ar sem suportes externos."
+  },
+  {
+    id: "bomboniere-torcida",
+    nome: "Bomboniere Helicoidal",
+    categoria: "Cozinha",
+    badge: "DECOR",
+    cor: "#7b5cff",
+    img: "assets/img/bomboniere.jpg",
+    precoBase: 39.90,
+    tempoEstimado: "4h 50m",
+    materialRecomendado: "PETG Translúcido",
+    desc: "Recipiente com ranhuras em espiral translúcidas que refratam doces e luz ambiente, criando um visual hipnótico na mesa."
+  }
 ];

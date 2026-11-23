@@ -3,149 +3,602 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>forge3D | Impressão 3D sob encomenda</title>
-  <meta name="description" content="Impressão 3D sob encomenda: peças decorativas, presentes, organização e conserto. Peça seu orçamento em minutos.">
+  <title>forge3D | Manufatura Aditiva & Impressão 3D sob Demanda</title>
+  <meta name="description" content="Impressão 3D de precisão sob demanda. Modelagem, prototipagem, peças industriais e decorativas com acabamento de alta definição.">
+
+  <!-- Typography (Google Fonts CDN) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
-  <header>
-    <a class="logo" href="#topo">forge<b>3D</b></a>
-    <a class="nav-cta" href="#orcamento">Orçamento</a>
+  <!-- Top Scroll Progress Line -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom Magnetic Cursor (Desktop) -->
+  <div id="cursor-dot" class="custom-cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <!-- Ambient Glowing Blobs -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="ambient-blob ambient-blob-1"></div>
+    <div class="ambient-blob ambient-blob-2"></div>
+    <div class="ambient-blob ambient-blob-3"></div>
+  </div>
+
+  <!-- Smart Floating Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#topo" aria-label="forge3D Home">
+        <span>forge</span><b>3D</b>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a class="nav-link" href="#processo">O Processo 3D</a>
+        <a class="nav-link" href="#configurador">Configurador</a>
+        <a class="nav-link" href="#catalogo">Catálogo</a>
+        <a class="nav-link" href="#ideias">Aplicações</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="cart-trigger" class="cart-trigger" type="button" aria-label="Abrir sacola de compras">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span id="cart-badge" class="cart-badge">0</span>
+        </button>
+
+        <a class="btn-primary" href="#configurador" style="padding:10px 20px;font-size:0.86rem">
+          Orçamento ⚡
+        </a>
+      </div>
+    </div>
   </header>
 
   <main id="topo">
-    <!-- 1. Abertura -->
-    <section class="hero" aria-label="Apresentação">
-      <img class="hero-img" src="assets/img/impressora.jpg" alt="Impressora 3D com rolos de filamento colorido ao lado">
-      <div class="hero-copy">
-        <span class="kicker">Impressão 3D sob encomenda</span>
-        <h1>Sua ideia, <span class="grad">impressa</span> em camadas</h1>
-        <p>Da escolha da peça até a entrega na sua casa. Você recebe o valor antes de começar.</p>
-        <a class="btn" href="#catalogo">Ver peças</a>
+    <!-- ======================================================================
+         1. Hero Section (Apple-style Typography & Value Proposition)
+         ====================================================================== -->
+    <section class="hero-section container" aria-label="Apresentação da marca">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          Manufatura Aditiva & Precisão Micrométrica
+        </div>
+
+        <h1 class="display-title">
+          Sua ideia, manufaturada em nível <span class="grad-text">atômico</span>.
+        </h1>
+
+        <p class="lead-text" style="margin: 20px auto 0;">
+          Da matemática tridimensional ao polímero sólido de alta densidade. Peças de engenharia, decoração escultural e utilidades sob demanda entregues com acabamento impecável.
+        </p>
+
+        <div class="hero-cta-group">
+          <a class="btn-primary" href="#catalogo">
+            Explorar Coleção
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a class="btn-secondary" href="#configurador">
+            Configurar em 3D
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Tech Highlights -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-val">0.12 mm</div>
+          <div class="stat-lbl">Resolução de Camada</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">250 mm/s</div>
+          <div class="stat-lbl">Cinemática de Alta Velocidade</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">4 Polímeros</div>
+          <div class="stat-lbl">PLA Silk, PETG Pro & Resina 8K</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Personalização sob Medida</div>
+        </div>
       </div>
     </section>
 
-    <!-- 2. Cena de scroll: a peça se separa em etapas -->
-    <section class="scene" id="scene" aria-label="Como a peça é feita">
-      <div class="scene-stick">
-        <div class="wrap scene-grid">
-          <div class="explode" aria-hidden="true">
-            <div id="slices" style="position:absolute;inset:0"></div>
+    <!-- Tech Specs Ticker Marquee -->
+    <div class="marquee-bar" aria-hidden="true">
+      <div class="marquee-inner">
+        <span class="marquee-item">FDM DE ALTA PRECISÃO <i>•</i></span>
+        <span class="marquee-item">FUSÃO MOLECULAR EM CAMADAS <i>•</i></span>
+        <span class="marquee-item">0.12MM ULTRA RESOLUÇÃO <i>•</i></span>
+        <span class="marquee-item">POLÍMEROS DE ENGENHARIA <i>•</i></span>
+        <span class="marquee-item">TOLERÂNCIAS MECÂNICAS RIGOROSAS <i>•</i></span>
+        <span class="marquee-item">ENVIO EXPRESSO BRASIL <i>•</i></span>
+        <span class="marquee-item">FDM DE ALTA PRECISÃO <i>•</i></span>
+        <span class="marquee-item">FUSÃO MOLECULAR EM CAMADAS <i>•</i></span>
+        <span class="marquee-item">0.12MM ULTRA RESOLUÇÃO <i>•</i></span>
+        <span class="marquee-item">POLÍMEROS DE ENGENHARIA <i>•</i></span>
+        <span class="marquee-item">TOLERÂNCIAS MECÂNICAS RIGOROSAS <i>•</i></span>
+        <span class="marquee-item">ENVIO EXPRESSO BRASIL <i>•</i></span>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         2. Interactive 3D Scroll Showcase (Three.js 360 & Extrusion Process)
+         ====================================================================== -->
+    <section class="scroll-showcase" id="processo" aria-label="A máquina e o processo de manufatura">
+      <div class="scroll-sticky">
+        <canvas id="printer-canvas"></canvas>
+
+        <!-- HUD Telemetry & Synchronized Stage Card -->
+        <div class="hud-overlay">
+          <div class="hud-top-telemetry">
+            <div class="hud-chip active">
+              <span class="pulse-dot"></span>
+              <span id="hud-telemetry-chip">SISTEMA ATIVO</span>
+            </div>
+            <div class="hud-chip">
+              <span>BICO: 215°C</span>
+            </div>
+            <div class="hud-chip">
+              <span>MESA PEI: 60°C</span>
+            </div>
+            <div class="hud-chip">
+              <span>VELOCIDADE: 250 mm/s</span>
+            </div>
           </div>
-          <div>
-            <div id="step-text" class="scene-text" aria-live="polite"></div>
-            <div id="scene-bar" class="scene-bar"><i></i></div>
-            <div id="dots" class="scene-dots" aria-hidden="true"></div>
+
+          <!-- Cinematic 7-Step Stage Card -->
+          <div class="hud-stage-card" id="hud-stage-card">
+            <div class="hud-step-count" id="hud-step-count">ETAPA 01 / 07</div>
+            <h3 class="hud-step-title" id="hud-step-title">Modelagem Tridimensional & CAD</h3>
+            <p class="hud-step-desc" id="hud-step-desc">Seu conceito digital é convertido em malha paramétrica com tolerâncias estritas.</p>
+
+            <div class="hud-timeline-dots" aria-hidden="true">
+              <div class="hud-timeline-dot active"></div>
+              <div class="hud-timeline-dot"></div>
+              <div class="hud-timeline-dot"></div>
+              <div class="hud-timeline-dot"></div>
+              <div class="hud-timeline-dot"></div>
+              <div class="hud-timeline-dot"></div>
+              <div class="hud-timeline-dot"></div>
+            </div>
+          </div>
+
+          <div class="scroll-indicator-badge" aria-hidden="true">
+            <div class="scroll-mouse-icon">
+              <div class="scroll-mouse-dot"></div>
+            </div>
+            Role para rotacionar 360° e ver a impressão em camadas
           </div>
         </div>
-        <p class="scene-hint">role para ver as etapas</p>
       </div>
     </section>
 
-    <!-- 3. Catálogo -->
-    <section class="sec" id="catalogo">
-      <div class="wrap">
-        <span class="kicker">Catálogo</span>
-        <h2 class="h2">Peças prontas para pedir</h2>
-        <p class="lead">Escolha uma peça e peça o orçamento. Pode ser ajustada em tamanho e cor.</p>
-        <div id="chips" class="chips"></div>
-        <div id="grid" class="grid" aria-live="polite"></div>
+    <!-- ======================================================================
+         3. Interactive 3D Configurator & Instant Price Estimator
+         ====================================================================== -->
+    <section class="section-pad container" id="configurador">
+      <div style="text-align:center; max-width: 760px; margin: 0 auto;">
+        <span class="kicker">Dopamina Criativa</span>
+        <h2 class="section-title">Configure sua peça em tempo real</h2>
+        <p class="lead-text" style="margin: 12px auto 0;">
+          Gire o modelo 3D, selecione o material polimérico e a tonalidade desejada. O motor calcula tempo de máquina e custo instantaneamente com transparência total.
+        </p>
       </div>
-    </section>
 
-    <!-- 4. Ideias do dia a dia -->
-    <section class="sec" id="ideias">
-      <div class="wrap">
-        <span class="kicker">Ideias</span>
-        <h2 class="h2">Onde a impressão 3D entra na sua rotina</h2>
-        <p class="lead">Algumas formas de usar em casa, no trabalho ou para presentear.</p>
-        <div id="ideas" class="ideas" style="margin-top:24px"></div>
-      </div>
-    </section>
+      <div class="configurator-wrapper">
+        <!-- Left: Real-time 3D Viewport -->
+        <div class="configurator-canvas-box">
+          <canvas id="configurator-canvas"></canvas>
 
-    <!-- 5. Orçamento guiado -->
-    <section class="sec" id="orcamento">
-      <div class="wrap">
-        <span class="kicker">Orçamento</span>
-        <h2 class="h2">Quanto custa a sua peça?</h2>
-        <p class="lead">Escolha as opções abaixo. O site mostra a estimativa de gramas, tempo e preço na hora.</p>
+          <div class="configurator-overlay-controls">
+            <span class="config-rotate-hint">Arraste para girar 360°</span>
+            <button id="btn-sim-print" class="btn-sim-print" type="button" title="Reproduzir animação de impressão">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Ver como é impresso
+            </button>
+          </div>
+        </div>
 
-        <div class="calc" style="margin-top:24px">
-          <div class="calc-grid">
-            <div>
-              <div class="step-title"><span>1</span>Tamanho aproximado</div>
-              <div id="sizes" class="sizes"></div>
+        <!-- Right: Interactive Controls -->
+        <div class="config-controls">
+          <!-- Material Selector -->
+          <div>
+            <div class="config-group-title">
+              <span>1. Polímero Tecnológico</span>
+              <small data-tooltip="Escolha entre acabamento fosco, acetinado ou alta resistência mecânica">Info</small>
+            </div>
+            <div class="material-selector-grid" id="material-selector-grid"></div>
+          </div>
 
-              <div class="step-title" style="margin-top:22px"><span>2</span>Para que ela serve?</div>
-              <div id="res-row" class="opt-row"></div>
+          <!-- Color Swatches -->
+          <div>
+            <div class="config-group-title">
+              <span>2. Pigmento & Cor</span>
+            </div>
+            <div class="color-swatch-row" id="color-swatch-row"></div>
+          </div>
 
-              <div class="step-title" style="margin-top:22px"><span>3</span>Acabamento</div>
-              <div id="acab-row" class="opt-row"></div>
+          <!-- Size Segmented Control -->
+          <div>
+            <div class="config-group-title">
+              <span>3. Escala & Volume</span>
+            </div>
+            <div class="segmented-control" id="size-selector-row"></div>
+          </div>
 
-              <div class="step-title" style="margin-top:22px"><span>4</span>Quantidade</div>
-              <div class="qty">
-                <button id="qty-minus" type="button" aria-label="Diminuir">−</button>
-                <output id="qty">1</output>
-                <button id="qty-plus" type="button" aria-label="Aumentar">+</button>
-              </div>
+          <!-- Layer Height Detail -->
+          <div>
+            <div class="config-group-title">
+              <span>4. Resolução de Camada</span>
+            </div>
+            <div class="segmented-control" id="detail-selector-row"></div>
+          </div>
+
+          <!-- Live Price Breakdown & Cart Add -->
+          <div class="quote-breakdown-card">
+            <div class="quote-top-row">
+              <span class="quote-lbl">Estimativa Instantânea</span>
+              <div class="quote-price-display" id="quote-price-display">R$ 0,00</div>
             </div>
 
-            <aside class="quote" aria-live="polite">
-              <div class="label">Estimativa</div>
-              <div id="total" class="total">R$ 0,00</div>
-              <div id="range" class="range"></div>
-              <ul>
-                <li><span>Tamanho</span><b id="det-tam"></b></li>
-                <li><span>Material gasto</span><b id="det-peso"></b></li>
-                <li><span>Tempo de impressão</span><b id="det-tempo"></b></li>
-                <li><span>Resistência</span><b id="det-res"></b></li>
-                <li><span>Acabamento</span><b id="det-acab"></b></li>
-                <li><span>Quantidade</span><b id="det-qtd"></b></li>
-              </ul>
-              <p class="note">Estimativa automática. O valor final é confirmado após a análise do seu modelo ou da sua ideia.</p>
-              <a id="pedir-orc" class="pedir" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
-            </aside>
+            <div class="quote-specs-list">
+              <span>Massa estimada: <b id="quote-calc-weight">0g</b></span>
+              <span>Tempo de máquina: <b id="quote-calc-time">0h</b></span>
+              <span>Acabamento: <b id="quote-calc-layer">0.20 mm</b></span>
+              <span>Manufatura: <b>100% calibrada</b></span>
+            </div>
+
+            <button id="btn-add-custom-bag" class="btn-primary" type="button" style="width:100%;margin-top:6px">
+              Adicionar Personalizado à Sacola 🛍️
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Material Benchmark Matrix (Apple Style Comparisons) -->
+      <div class="benchmark-container">
+        <h3 style="font-size:1.15rem;font-weight:800;letter-spacing:-0.02em;">
+          Comparativo de Engenharia de Materiais
+        </h3>
+        <p style="font-size:0.86rem;color:var(--text-secondary);margin-top:4px;">
+          Propriedades mecânicas e térmicas calculadas para cada termoplástico.
+        </p>
+
+        <div class="benchmark-grid">
+          <div class="benchmark-item">
+            <div class="benchmark-header">
+              <span>Resistência Mecânica</span>
+              <strong id="bench-val-resistencia">80%</strong>
+            </div>
+            <div class="benchmark-bar-track">
+              <div class="benchmark-bar-fill" id="bench-bar-resistencia" style="width: 80%"></div>
+            </div>
+          </div>
+
+          <div class="benchmark-item">
+            <div class="benchmark-header">
+              <span>Fidelidade de Detalhe</span>
+              <strong id="bench-val-detalhe">90%</strong>
+            </div>
+            <div class="benchmark-bar-track">
+              <div class="benchmark-bar-fill" id="bench-bar-detalhe" style="width: 90%"></div>
+            </div>
+          </div>
+
+          <div class="benchmark-item">
+            <div class="benchmark-header">
+              <span>Flexibilidade & Impacto</span>
+              <strong id="bench-val-flex">20%</strong>
+            </div>
+            <div class="benchmark-bar-track">
+              <div class="benchmark-bar-fill" id="bench-bar-flex" style="width: 20%"></div>
+            </div>
+          </div>
+
+          <div class="benchmark-item">
+            <div class="benchmark-header">
+              <span>Resistência Térmica</span>
+              <strong id="bench-val-temp">55°C</strong>
+            </div>
+            <div class="benchmark-bar-track">
+              <div class="benchmark-bar-fill" id="bench-bar-temp" style="width: 55%"></div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Créditos das fotos -->
-    <section class="sec" style="padding-top:0">
-      <div class="wrap credits">
-        <strong>Fotos</strong>
-        <ul id="creditos"></ul>
+    <!-- ======================================================================
+         4. Nike-Style Product Catalog Grid
+         ====================================================================== -->
+    <section class="section-pad container" id="catalogo">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+        <div>
+          <span class="kicker">Edição Limitada & Drops</span>
+          <h2 class="section-title">Catálogo de Peças Prontas</h2>
+          <p class="lead-text" style="margin-top:8px;">
+            Geometrias exclusivas testadas para estética de alto impacto e durabilidade real.
+          </p>
+        </div>
       </div>
+
+      <!-- Category Filter Pills -->
+      <div class="catalog-filter-bar" id="catalog-filters"></div>
+
+      <!-- Dynamic Product Cards Grid -->
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <!-- ======================================================================
+         5. Lifestyle / Applications Carousel
+         ====================================================================== -->
+    <section class="section-pad container" id="ideias">
+      <div style="text-align:center;max-width:700px;margin:0 auto 36px;">
+        <span class="kicker">Versatilidade Infinita</span>
+        <h2 class="section-title">Onde a forge3D entra na sua vida</h2>
+        <p class="lead-text" style="margin-top:8px;">
+          Do design de interiores à engenharia mecânica de precisão.
+        </p>
+      </div>
+
+      <div class="ideas-carousel" id="ideas-carousel"></div>
     </section>
   </main>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <!-- ======================================================================
+       Shopping Cart Drawer (Nike / Apple Off-Canvas)
+       ====================================================================== -->
+  <div class="cart-backdrop" id="cart-backdrop">
+    <div class="cart-drawer" id="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3 class="cart-drawer-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Sua Sacola
+        </h3>
+        <button id="cart-drawer-close" class="cart-drawer-close" type="button" aria-label="Fechar sacola">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
 
-  <footer>© forge3D · Impressão 3D sob encomenda</footer>
+      <!-- Items List -->
+      <div class="cart-items-body" id="cart-items-body"></div>
 
+      <!-- Footer & WhatsApp Checkout -->
+      <div class="cart-drawer-footer">
+        <div class="cart-shipping-perk">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Envio para todo o Brasil • Embalagem antichoque
+        </div>
+
+        <div class="cart-subtotal-row">
+          <span>Subtotal estimado</span>
+          <strong id="cart-subtotal">R$ 0,00</strong>
+        </div>
+
+        <a id="btn-checkout-whats" class="btn-checkout-whats" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.062-2.124-.528-1.558-.646-2.581-2.228-2.659-2.332-.078-.104-.633-.843-.633-1.609 0-.766.4-.1.144-.543.144-.442.312-.651.416-.755.104-.104.228-.13.305-.13.078 0 .156.002.224.005.073.003.171-.027.268.206.104.252.355.867.386.932.031.065.052.143.01.228-.042.085-.063.138-.125.212-.062.074-.131.164-.187.22-.063.063-.129.131-.055.258.073.127.327.54.701.873.482.428.887.561 1.013.623.125.062.198.052.271-.031.073-.083.312-.364.395-.489.083-.125.166-.104.281-.062.115.042.729.344.854.406.125.062.208.094.239.146.031.052.031.302-.113.707z"/></svg>
+          Finalizar Pedido no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       Quick View Modal
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-quick-view">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-quick-close" type="button" aria-label="Fechar janela">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="modal-grid-content">
+        <div class="modal-media-box">
+          <img id="modal-quick-img" src="" alt="Foto do produto">
+        </div>
+        <div class="modal-info-pane">
+          <div>
+            <span class="product-cat" id="modal-quick-cat">Categoria</span>
+            <h3 style="font-size:1.45rem;font-weight:800;margin:6px 0;" id="modal-quick-title">Nome da Peça</h3>
+            <div style="font-size:1.6rem;font-weight:800;color:var(--neon-gold);" id="modal-quick-price">R$ 0,00</div>
+          </div>
+
+          <p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.6;" id="modal-quick-desc">
+            Descrição detalhada da peça.
+          </p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;background:rgba(255,255,255,0.04);padding:14px;border-radius:12px;border:1px solid var(--border-subtle);font-size:0.8rem;">
+            <div>
+              <span style="color:var(--text-tertiary);display:block;">Tempo de Máquina</span>
+              <strong id="modal-quick-time" style="color:var(--text-primary);font-size:0.95rem;">-</strong>
+            </div>
+            <div>
+              <span style="color:var(--text-tertiary);display:block;">Polímero Indicado</span>
+              <strong id="modal-quick-mat" style="color:var(--neon-cyan);font-size:0.95rem;">-</strong>
+            </div>
+          </div>
+
+          <button id="modal-quick-add-btn" class="btn-primary" type="button" style="width:100%;margin-top:8px">
+            Adicionar à Sacola 🛍️
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ======================================================================
+       Minimalist Luxury Tech Footer (Cinza com Preto & Diretrizes)
+       ====================================================================== -->
+  <footer class="footer-minimal">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <span>forge</span><b>3D</b>
+      </div>
+
+      <div class="footer-nav-links">
+        <button id="btn-open-legal" class="footer-link" type="button">Diretrizes & Leis (CDC)</button>
+        <button id="btn-open-admin" class="footer-admin-btn" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+          Área do Administrador
+        </button>
+      </div>
+
+      <div class="footer-status-pill">
+        <i></i> Sistema Operacional • Encomendas Abertas
+      </div>
+    </div>
+
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border-subtle);font-size:0.82rem;color:var(--text-secondary);">
+      <div>
+        Atendimento & Contato:
+        <a href="mailto:arthurfr309@gmail.com" style="color:var(--text-primary);font-weight:600;text-decoration:underline;">arthurfr309@gmail.com</a>
+        • WhatsApp: <a href="https://wa.me/5562995534658" target="_blank" rel="noopener" style="color:var(--text-primary);font-weight:600;">(62) 99553-4658</a>
+      </div>
+      <div>
+        <a href="#topo" style="color:var(--text-secondary);font-weight:600">Voltar ao topo ↑</a>
+      </div>
+    </div>
+
+    <div class="container footer-copy">
+      © 2026 forge3D · Goiânia - GO · Brasil. Manufatura aditiva de alta precisão. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       Modal: Diretrizes & Leis do Consumidor (CDC, LGPD e Padrões Técnicos)
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-legal">
+    <div class="modal-card" style="max-width:680px">
+      <button class="modal-close-btn" id="modal-legal-close" type="button" aria-label="Fechar janela">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="legal-card-body">
+        <div style="border-bottom:1px solid var(--border-subtle);padding-bottom:16px;">
+          <span class="kicker">Transparência & Conformidade Legal</span>
+          <h3 style="font-size:1.5rem;font-weight:800;color:#fff;">Diretrizes de Manufatura & Leis</h3>
+          <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:4px;">
+            Compromisso com o Código de Defesa do Consumidor (Lei 8.078/90) e LGPD (Lei 13.709/18).
+          </p>
+        </div>
+
+        <div>
+          <h4><span class="legal-tag">CDC ART. 26</span>Garantia Legal de 90 Dias</h4>
+          <p>
+            Todas as peças impressas na forge3D possuem garantia legal de 90 (noventa) dias contra defeitos de fusão, delaminação de camadas não intencionais ou falhas estruturais de manufatura decorrentes do processo produtivo.
+          </p>
+        </div>
+
+        <div>
+          <h4><span class="legal-tag">CDC ART. 49</span>Produtos Personalizados & Sob Medida</h4>
+          <p>
+            Conforme a jurisprudência comercial e diretrizes do PROCON para produtos sob encomenda e manufatura sob medida personalizada (cores, dimensões ou arquivos STL exclusivos do cliente), o direito de arrependimento não se aplica a peças já confeccionadas e aprovadas formalmente pelo comprador, resguardando-se a garantia contra vícios e defeitos de produção.
+          </p>
+        </div>
+
+        <div>
+          <h4><span class="legal-tag">TÉCNICA</span>Tolerâncias de Manufatura FDM / SLA</h4>
+          <p>
+            A impressão 3D FDM opera com tolerância dimensional padrão de ±0,2 mm. Pequenas marcas de linhas de camada e suportes removidos são inerentes à tecnologia aditiva e conferem a autenticidade geométrica do processo, sem necessidade de acabamentos manuais de lixamento ou pintura.
+          </p>
+        </div>
+
+        <div>
+          <h4><span class="legal-tag">LGPD</span>Privacidade & Proteção de Dados</h4>
+          <p>
+            Arquivos 3D (STL, STEP, 3MF) e dados pessoais fornecidos (nome, telefone WhatsApp e endereço) são utilizados estritamente para o faturamento, fabricação e envio, sendo mantidos em absoluto sigilo sem compartilhamento com terceiros.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       Modal: Área do Administrador / Gestão de Pedidos
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-admin">
+    <div class="modal-card" style="max-width:720px">
+      <button class="modal-close-btn" id="modal-admin-close" type="button" aria-label="Fechar janela">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="legal-card-body">
+        <div style="border-bottom:1px solid var(--border-subtle);padding-bottom:16px;">
+          <span class="kicker">Painel Operacional</span>
+          <h3 style="font-size:1.5rem;font-weight:800;color:#fff;">Resumo para o Administrador</h3>
+          <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:4px;">
+            Guia rápido de como os pedidos chegam, como inspecionar e como faturar/produzir.
+          </p>
+        </div>
+
+        <div class="admin-guide-grid">
+          <div class="admin-guide-card">
+            <h5>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              1. Como os pedidos chegam
+            </h5>
+            <p>
+              Quando o cliente clica em <strong>"Finalizar Pedido no WhatsApp"</strong>, a sacola do site gera automaticamente uma mensagem estruturada com todos os itens, quantidades, cores e valores calculados, enviada direto para o WhatsApp cadastrado: <strong>(62) 99553-4658</strong>.
+            </p>
+          </div>
+
+          <div class="admin-guide-card">
+            <h5>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              2. Canal de E-mail Alternativo & Arquivos STL
+            </h5>
+            <p>
+              Para clientes empresariais ou pedidos com arquivos pesados de engenharia, os contatos são centralizados no e-mail: <strong>arthurfr309@gmail.com</strong>.
+            </p>
+          </div>
+
+          <div class="admin-guide-card">
+            <h5>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              3. Produção & Fatiamento
+            </h5>
+            <p>Basta abrir o fatiador (Bambu Studio, Cura ou PrusaSlicer) e aplicar os parâmetros do pedido:</p>
+            <ul>
+              <li><strong>Draft:</strong> 0.28mm (alta velocidade para protótipos)</li>
+              <li><strong>Padrão:</strong> 0.20mm (infill 30% giroidal recomendado)</li>
+              <li><strong>Detalhe:</strong> 0.12mm (ótimo para estatuetas e decoração fina)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       Core Libraries (Allowed CDNs Only)
+       ====================================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Project Configuration & Catalog Data -->
   <script src="data/config.js"></script>
   <script src="data/produtos.js"></script>
   <script src="data/ideias.js"></script>
-  <script src="data/creditos.js"></script>
-  <script src="assets/js/app.js"></script>
-  <script>
-    (function () {
-      var ul = document.getElementById("creditos");
-      (window.FORGE_CREDITOS || []).forEach(function (c) {
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = c.fonte; a.target = "_blank"; a.rel = "noopener";
-        a.textContent = c.titulo.replace(/\.(jpe?g|png)$/i, "");
-        li.appendChild(a);
-        li.appendChild(document.createTextNode(" · " + c.autor + " · " + c.licenca));
-        ul.appendChild(li);
-      });
-    })();
-  </script>
+
+  <!-- Main Interactive Engine -->
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
