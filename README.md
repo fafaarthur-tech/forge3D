@@ -2,7 +2,7 @@
 
 # forge3D
 
-Online store and quote tool for a custom 3D printing business in Goiânia, Brazil. It is a static site in plain HTML, CSS and JavaScript: no framework, no server and no build step.
+Online store and quote tool for a custom 3D printing business in Goiânia, Brazil, that I am building with friends. The business is in development and has not launched yet. The site is a static site in plain HTML, CSS and JavaScript: no framework, no server and no build step.
 
 ## What it does
 
